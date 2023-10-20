@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Loan EMI Calculator</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .panel
+        {
+            margin-left: 10px;
+            margin-top: 10px;
+            border: 1px solid light;
+           width:90%;
+           height: 300px;
+           box-shadow: 2px 2px 2px 2px lavender;
+        }
+    </style>
+  <script type="text/javascript">
+   function CalclateInterst()
+   {
+     var P = parseInt(document.getElementById("txtAmount").value);
+	 
+     var R = parseFloat((document.getElementById("txtInterstRate").value/12/100));
+	
+     var N = parseInt((document.getElementById("txtYears").value*12));
+
+     var EMI = P*R*Math.pow(1+R,N)/[Math.pow(1+R,N)-1];
+
+     document.querySelector("p").innerHTML = `Your Monthly EMI will be<b>&#8377; ${Math.round(EMI) }</b> per month `;
+     document.querySelector("a").style.display="block";
+   }                                           
+   function AmountChange()
+   {
+    document.getElementById("txtAmount").value = document.getElementById("rangeAmount").value;
+ 
+   }
+   function YearChange()
+   {
+    document.getElementById("txtYears").value = document.getElementById("rangeYear").value;
+   }
+   function InterestChange()
+   {
+    document.getElementById("txtInterstRate").value =document.getElementById("rangeInterestRate").value;
+   }
+  </script>
+</head>
+<body class="container-fluid">
+<div class="panel">
+   <center> <h2>Personal Loan EMI Calculator</h2></center>
+    <!--1st row-->
+    <div class="row mt-4 ">
+        <div class="col ms-3" >
+            Amount you need &nbsp; <input type="text"    class="form-control-sm"id="txtAmount"   value="&#8377;5,00,000" size="10">
+        </div>
+        <div class="col" >
+          for &nbsp;<input type="text" class="form-control-sm"  id="txtYears" value="5">&nbsp;years
+        </div>
+        <div class="col" >
+         interest rate&nbsp; <input type="text" value="10.5"   id="txtInterstRate" class="form-control-sm">&nbsp;%
+        </div>
+    </div
+
+    <!--2nd row-->
+    <div class="row mt-4">
+        <div class="col">
+        <input type="range"  class="form-range form-control-sm"  id="rangeAmount" min="10000" max="1000000"  onchange="AmountChange()">
+        </div>
+        <div class="col">
+        <input type="range" class="form-range form-control-sm" id="rangeYear" min="1" max="10" onchange="YearChange()">
+        </div>
+        <div class="col">
+        <input type="range" class="form-range form-control-sm"  id="rangeInterestRate" min="5.0" max="21.0"onchange="InterestChange()">
+        </div>
+    </div>
+
+    <!--3rd row-->
+    <div class="row">
+        <div class="col ms-2">
+        <span class="float-start">&#8377;10,000</span>
+        <span class="float-end">&#8377; 10,00,000</span>
+        </div>
+        <div class="col">
+        <span class="float-start">1 Year</span>
+        <span class="float-end">10 Year</span>
+        </div>
+        <div class="col me-2">
+       <span class="float-start">5.0%</span>
+       <span class="float-end">21%</span>
+        </div>
+    </div>
+
+    <!--4th row-->
+    <div class="row mt-3">
+     <div class="col me-2">
+       <button class="btn bg-primary float-end text-bg-secondary " onclick="CalclateInterst()">CALCULATE</button>
+     </div>
+     
+     <div class="row mt-3 ">
+        <div class="d-flex" >
+        <p> </p> &nbsp;&nbsp; <span><a href="#" style="display: none;">Apply for a Personal Loan</a></span>
+     </div>
+    </div>
+  
+</div>
+ </div>
+</body>
+</html>
